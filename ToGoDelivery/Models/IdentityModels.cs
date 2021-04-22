@@ -29,5 +29,11 @@ namespace ToGoDelivery.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<ToGoDelivery.Models.Product> Products { get; set; }
+        public DbSet<ToGoDelivery.Models.Order> Orders { get; set; }
+        public DbSet<ToGoDelivery.Models.Service> Services { get; set; }
+        public DbSet<ToGoDelivery.Models.OrderService> OrderServices { get; set; }
+        public DbSet<ToGoDelivery.Models.OrderProduct> OrderProducts { get; set; }
     }
 }
