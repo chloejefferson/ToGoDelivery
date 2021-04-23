@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202104230054538_ProductName.Designer.cs">
       <DependentUpon>202104230054538_ProductName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104230136365_RemovedModifiedDate.cs" />
+    <Compile Include="Migrations\202104230136365_RemovedModifiedDate.Designer.cs">
+      <DependentUpon>202104230136365_RemovedModifiedDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -332,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104230054538_ProductName.resx">
       <DependentUpon>202104230054538_ProductName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104230136365_RemovedModifiedDate.resx">
+      <DependentUpon>202104230136365_RemovedModifiedDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

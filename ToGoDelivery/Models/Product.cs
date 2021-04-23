@@ -25,8 +25,6 @@ namespace ToGoDelivery.Models
 
         [Required]
         public DateTime CreatedDate { get; set; }
-
-        public DateTime ModifiedDate { get; set; }
     }
 
     //public class ProductDbContext : DbContext
