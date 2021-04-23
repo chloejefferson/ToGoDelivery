@@ -11,7 +11,10 @@ namespace ToGoDelivery.Models
     {
         [Key, Required]
         public int ProductId { get; set; }
-        
+
+        [Required]
+        public string Name { get; set; }
+
         public int Inventory { get; set; }
         
         [Required]

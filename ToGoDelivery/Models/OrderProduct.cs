@@ -19,8 +19,10 @@ namespace ToGoDelivery.Models
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
+        [Required, Range(1,Int32.MaxValue)]
         public int ProductCount { get; set; }
 
+        [Required]
         public bool IsActive { get; set; }
     }
 }

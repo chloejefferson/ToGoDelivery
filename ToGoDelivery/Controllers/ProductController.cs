@@ -16,5 +16,10 @@ namespace ToGoDelivery.Controllers
         {
             return View(_db.Products.ToList());
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }
