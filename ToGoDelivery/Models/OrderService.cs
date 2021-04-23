@@ -9,14 +9,16 @@ namespace ToGoDelivery.Models
 {
     public class OrderService
     {
-        [Key, Required, ForeignKey(nameof(Order))]
+        [Key, ForeignKey(nameof(Order))]
+        [Column(Order = 1)]
         public int OrderId { get; set; }
-
         public virtual Order Order { get; set; }
 
-        [Key, Required, ForeignKey(nameof(Service))]
+        [Key, ForeignKey(nameof(Service))]
+        [Column(Order = 2)]
         public int ServiceId { get; set; }
-
         public virtual Service Service { get; set; }
+
+        public decimal Cost { get; set; }
     }
 }

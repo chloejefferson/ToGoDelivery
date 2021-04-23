@@ -9,20 +9,18 @@ namespace ToGoDelivery.Models
 {
     public class OrderProduct
     {
-        [Key, Required, ForeignKey(nameof(Order))]
+        [Key, ForeignKey(nameof(Order))]
+        [Column(Order = 1)]
         public int OrderId { get; set; }
-
         public virtual Order Order { get; set; }
 
-        [Key, Required, ForeignKey(nameof(Product))]
+        [Key, ForeignKey(nameof(Product))]
+        [Column(Order = 2)]
         public int ProductId { get; set; }
-
         public virtual Product Product { get; set; }
 
-        [Required, Range(1,Int32.MaxValue)]
         public int ProductCount { get; set; }
 
-        [Required]
         public bool IsActive { get; set; }
     }
 }

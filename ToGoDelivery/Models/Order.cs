@@ -12,11 +12,16 @@ namespace ToGoDelivery.Models
         [Key, Required]
         public int OrderId { get; set; }
 
-        [Required, ForeignKey(nameof(ApplicationUser))]
-        public Guid CustomerId { get; set; }
+        //https://entityframework.net/knowledge-base/41274794/how-do-i-add-a-foreign-key-to-identity-user-in-ef-core-
+        //[Required, ForeignKey(nameof(ApplicationUser))]
+        //public Guid CustomerId { get; set; }
+        //public virtual ApplicationUser Customer { get; set; }
+        [Required]
+        public string CustomerId { get; set; }
 
-        public virtual ApplicationUser Customer { get; set; }
-        
+        [ForeignKey("CustomerId")]
+        public ApplicationUser Customer { get; set; }
+
         [Required]
         public DateTime DateCreated { get; set; }
 
@@ -27,10 +32,15 @@ namespace ToGoDelivery.Models
 
         public bool IsFavorite { get; set; }
         
-        [ForeignKey(nameof(ApplicationUser))]
-        public ApplicationUser DriverId { get; set; }
+        //[ForeignKey(nameof(ApplicationUser))]
+        //public ApplicationUser DriverId { get; set; }
 
-        public virtual ApplicationUser Driver { get; set; }
+        //public virtual ApplicationUser Driver { get; set; }
+
+        //public string DriverId { get; set; }
+
+        //[ForeignKey("DriverId")]
+        //public ApplicationUser Driver { get; set; }
 
         public bool IsPrepared { get; set; }
 
