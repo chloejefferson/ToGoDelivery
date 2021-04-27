@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace ToGoDelivery.Models
+namespace ToGoDelivery.Data
 {
     public class Product
     {

@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using ToGoDelivery.Data;
 
-namespace ToGoDelivery.Models
+namespace ToGoDelivery.Data
 {
     public class Order
     {

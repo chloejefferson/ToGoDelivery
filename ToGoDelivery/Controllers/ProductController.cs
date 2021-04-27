@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ToGoDelivery.Data;
 using ToGoDelivery.Models;
 
 namespace ToGoDelivery.Controllers
@@ -25,6 +26,7 @@ namespace ToGoDelivery.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
+            //Below should be referenced in a service
             product.CreatedDate = DateTime.Now;
             product.IsActive = true;
 
@@ -83,6 +85,19 @@ namespace ToGoDelivery.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            return View(product);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+
+            Product product = _db.Products.Find(id);
+
+            if (product == null)
+                return HttpNotFound();
+
             return View(product);
         }
     }

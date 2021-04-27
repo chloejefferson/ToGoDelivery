@@ -220,13 +220,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderProduct.cs" />
-    <Compile Include="Models\OrderService.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -340,6 +334,20 @@
     <EmbeddedResource Include="Migrations\202104230136365_RemovedModifiedDate.resx">
       <DependentUpon>202104230136365_RemovedModifiedDate.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToGoDelivery.Data\ToGoDelivery.Data.csproj">
+      <Project>{f9653dce-c580-42c8-84b1-dcb220147da7}</Project>
+      <Name>ToGoDelivery.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToGoDelivery.Models\ToGoDelivery.Models.csproj">
+      <Project>{84f1837c-abad-4cec-b08c-ef935ec0f921}</Project>
+      <Name>ToGoDelivery.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToGoDelivery.Services\ToGoDelivery.Services.csproj">
+      <Project>{c5783e27-7308-41a1-bbd2-2cd84e4bae6f}</Project>
+      <Name>ToGoDelivery.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

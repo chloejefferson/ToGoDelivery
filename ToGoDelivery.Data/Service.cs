@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ToGoDelivery.Models
-{
+namespace ToGoDelivery.Data
+{ 
     public class Service
     {
         [Key, Required]

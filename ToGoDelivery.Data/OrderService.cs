@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace ToGoDelivery.Models
+namespace ToGoDelivery.Data
 {
     public class OrderService
     {
