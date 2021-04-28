@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ToGoDelivery.Data;
 using ToGoDelivery.Models;
+using ToGoDelivery.Models.Product;
+using ToGoDelivery.Services;
 
 namespace ToGoDelivery.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
@@ -15,7 +19,11 @@ namespace ToGoDelivery.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View(_db.Products.ToList());
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ProductService(userId);
+            var model = service.GetProducts();
+
+            return View(model);
         }
 
         public ActionResult Create()
@@ -23,24 +31,23 @@ namespace ToGoDelivery.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Create(Product product)
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Create(ProductCreate model)
         {
-            //Below should be referenced in a service
-            product.CreatedDate = DateTime.Now;
-            product.IsActive = true;
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _db.Products.Add(product);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(model);
             }
 
-            return View(product);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ProductService(userId);
+
+            service.CreateProduct(model);
+
+            return RedirectToAction("Index");
 
         }
-
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)

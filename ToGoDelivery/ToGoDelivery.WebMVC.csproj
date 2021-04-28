@@ -283,12 +283,11 @@
     <Content Include="Views\OrderProduct\Index.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\OrderService\Index.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
