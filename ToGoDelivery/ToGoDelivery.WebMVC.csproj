@@ -178,47 +178,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104230031388_InitialMigration.cs" />
-    <Compile Include="Migrations\202104230031388_InitialMigration.Designer.cs">
-      <DependentUpon>202104230031388_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230033260_OrderProduct.cs" />
-    <Compile Include="Migrations\202104230033260_OrderProduct.Designer.cs">
-      <DependentUpon>202104230033260_OrderProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230036091_OrderProduct2.cs" />
-    <Compile Include="Migrations\202104230036091_OrderProduct2.Designer.cs">
-      <DependentUpon>202104230036091_OrderProduct2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230037083_OrderProduct3.cs" />
-    <Compile Include="Migrations\202104230037083_OrderProduct3.Designer.cs">
-      <DependentUpon>202104230037083_OrderProduct3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230039323_OrderService.cs" />
-    <Compile Include="Migrations\202104230039323_OrderService.Designer.cs">
-      <DependentUpon>202104230039323_OrderService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230040140_OrderService2.cs" />
-    <Compile Include="Migrations\202104230040140_OrderService2.Designer.cs">
-      <DependentUpon>202104230040140_OrderService2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230048133_DataAnnotations.cs" />
-    <Compile Include="Migrations\202104230048133_DataAnnotations.Designer.cs">
-      <DependentUpon>202104230048133_DataAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230048333_DataAnnotations2.cs" />
-    <Compile Include="Migrations\202104230048333_DataAnnotations2.Designer.cs">
-      <DependentUpon>202104230048333_DataAnnotations2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230054538_ProductName.cs" />
-    <Compile Include="Migrations\202104230054538_ProductName.Designer.cs">
-      <DependentUpon>202104230054538_ProductName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230136365_RemovedModifiedDate.cs" />
-    <Compile Include="Migrations\202104230136365_RemovedModifiedDate.Designer.cs">
-      <DependentUpon>202104230136365_RemovedModifiedDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,10 +243,11 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\OrderService\Index.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -301,38 +261,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104230031388_InitialMigration.resx">
-      <DependentUpon>202104230031388_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230033260_OrderProduct.resx">
-      <DependentUpon>202104230033260_OrderProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230036091_OrderProduct2.resx">
-      <DependentUpon>202104230036091_OrderProduct2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230037083_OrderProduct3.resx">
-      <DependentUpon>202104230037083_OrderProduct3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230039323_OrderService.resx">
-      <DependentUpon>202104230039323_OrderService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230040140_OrderService2.resx">
-      <DependentUpon>202104230040140_OrderService2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230048133_DataAnnotations.resx">
-      <DependentUpon>202104230048133_DataAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230048333_DataAnnotations2.resx">
-      <DependentUpon>202104230048333_DataAnnotations2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230054538_ProductName.resx">
-      <DependentUpon>202104230054538_ProductName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230136365_RemovedModifiedDate.resx">
-      <DependentUpon>202104230136365_RemovedModifiedDate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ToGoDelivery.Data\ToGoDelivery.Data.csproj">
