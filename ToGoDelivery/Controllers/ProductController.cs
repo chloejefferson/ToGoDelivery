@@ -34,78 +34,97 @@ namespace ToGoDelivery.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Create(ProductCreate model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+
+            var service = CreateProductService();
+
+            if (service.CreateProduct(model))
             {
-                return View(model);
-            }
-
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new ProductService(userId);
-
-            service.CreateProduct(model);
-
-            return RedirectToAction("Index");
-
-        }
-        
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-
-            Product product = _db.Products.Find(id);
-            
-            if (product == null)
-                return HttpNotFound();
-
-            return View(product);
-        }
-
-        [HttpPost, ActionName("Delete"), ValidateAntiForgeryToken]
-        public ActionResult Delete (int id)
-        {
-            Product product = _db.Products.Find(id);
-            _db.Products.Remove(product);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-
-            Product product = _db.Products.Find(id);
-
-            if (product == null)
-                return HttpNotFound();
-
-            return View(product);
-        }
-
-        [HttpPost, ActionName("Edit"), ValidateAntiForgeryToken]
-        public ActionResult Edit (Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(product).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
+                TempData["SaveResult"] = "Your product was created.";
                 return RedirectToAction("Index");
             }
-            return View(product);
+
+            ModelState.AddModelError("", "Product could not be created.");
+
+            return View(model);
+
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            var svc = CreateProductService();
+            var model = svc.GetProductById(id);
 
-            Product product = _db.Products.Find(id);
+            return View(model);
+        }
 
-            if (product == null)
-                return HttpNotFound();
+        public ActionResult Edit(int id)
+        {
+            var svc = CreateProductService();
+            var detail = svc.GetProductById(id);
+            var model =
+                new ProductEdit
+                {
+                    ProductId = detail.ProductId,
+                    Name = detail.Name,
+                    Cost = detail.Cost,
+                    Inventory = detail.Inventory
+                };
 
-            return View(product);
+            return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ProductEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if(model.ProductId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            };
+
+            var svc = CreateProductService();
+            
+            if(svc.UpdateProduct(model))
+            {
+                TempData["SaveResult"] = "Your product was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your product could not be updated.");
+            return View(model);
+        }
+
+        [ActionName("SoftDelete")]
+        public ActionResult SoftDelete(int id)
+        {
+            var svc = CreateProductService();
+            var model = svc.GetProductById(id);
+
+            return View(model);
+        }
+
+
+        [ActionName("SoftDelete"), HttpPost, ValidateAntiForgeryToken]
+        public ActionResult SoftDeletePost(int id)
+        {
+            var svc = CreateProductService();
+            
+            svc.SoftDeleteProduct(id);
+
+            TempData["SaveResult"] = "Your product was (soft) deleted.";
+
+            return RedirectToAction("Index");
+
+        }
+
+        private ProductService CreateProductService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ProductService(userId);
+            return service;
         }
     }
 }

@@ -50,10 +50,63 @@ namespace ToGoDelivery.Services
                                    Name = e.Name,
                                    Inventory = e.Inventory,
                                    Cost = e.Cost,
+                                   IsActive = e.IsActive,
                                 }
                         );
 
                 return query.ToArray();
+            }
+        }
+
+        public ProductDetail GetProductById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Products
+                    .Single(e => e.ProductId == id);
+                return
+                new ProductDetail
+                {
+                    ProductId = entity.ProductId,
+                    Name = entity.Name,
+                    Inventory = entity.Inventory,
+                    Cost = entity.Cost,
+                    CreatedDate = entity.CreatedDate,
+                    IsActive = entity.IsActive
+                };
+            }
+        }
+
+        public bool UpdateProduct(ProductEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Products
+                    .Single(e => e.ProductId == model.ProductId);
+                entity.Name = model.Name;
+                entity.Inventory = model.Inventory;
+                entity.Cost = model.Cost;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool SoftDeleteProduct(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Products
+                    .Single(e => e.ProductId == id);
+
+                entity.IsActive = false;
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }
