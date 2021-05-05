@@ -20,7 +20,7 @@ namespace ToGoDelivery.Models.Product
         [Required]
         public decimal Cost { get; set; }
 
-        [Display(Name="Active?")]
+        [Required, Display(Name="Active?")]
         public bool IsActive { get; set; }
     }
 }

@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToGoDelivery.Models.Product
+namespace ToGoDelivery.Models.Service
 {
-    public class ProductEdit
+    public class ServiceListItem
     {
-        [Required, Display(Name="Product ID")]
-        public int ProductId { get; set; }
-        
+        [Required]
+        public int ServiceId { get; set; }
+
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public int Inventory { get; set; }
-
-        [Required]
         public decimal Cost { get; set; }
+
+        [Required, Display(Name = "Active?")]
+        public bool IsActive { get; set; }
     }
 }

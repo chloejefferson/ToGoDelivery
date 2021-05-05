@@ -59,12 +59,15 @@
     <Compile Include="Product\ProductEdit.cs" />
     <Compile Include="Product\ProductListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ServiceCreate.cs" />
+    <Compile Include="Service\ServiceDetail.cs" />
+    <Compile Include="Service\ServiceEdit.cs" />
+    <Compile Include="Service\ServiceListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OrderProduct\" />
     <Folder Include="OrderService\" />
     <Folder Include="Order\" />
-    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
