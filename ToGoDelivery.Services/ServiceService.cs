@@ -56,56 +56,54 @@ namespace ToGoDelivery.Services
             }
         }
 
-        //        public ProductDetail GetProductById(int id)
-        //        {
-        //            using (var ctx = new ApplicationDbContext())
-        //            {
-        //                var entity =
-        //                    ctx
-        //                    .Products
-        //                    .Single(e => e.ProductId == id);
-        //                return
-        //                new ProductDetail
-        //                {
-        //                    ProductId = entity.ProductId,
-        //                    Name = entity.Name,
-        //                    Inventory = entity.Inventory,
-        //                    Cost = entity.Cost,
-        //                    CreatedDate = entity.CreatedDate,
-        //                    IsActive = entity.IsActive
-        //                };
-        //            }
-        //        }
+        public ServiceDetail GetServiceById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Services
+                    .Single(e => e.ServiceId == id);
+                return
+                new ServiceDetail
+                {
+                    ServiceId = entity.ServiceId,
+                    Name = entity.Name,
+                    Cost = entity.Cost,
+                    CreatedDate = entity.CreatedDate,
+                    IsActive = entity.IsActive
+                };
+            }
+        }
 
-        //        public bool UpdateProduct(ProductEdit model)
-        //        {
-        //            using (var ctx = new ApplicationDbContext())
-        //            {
-        //                var entity =
-        //                    ctx
-        //                    .Products
-        //                    .Single(e => e.ProductId == model.ProductId);
-        //                entity.Name = model.Name;
-        //                entity.Inventory = model.Inventory;
-        //                entity.Cost = model.Cost;
+        public bool UpdateService(ServiceEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Services
+                    .Single(e => e.ServiceId == model.ServiceId);
+                entity.Name = model.Name;
+                entity.Cost = model.Cost;
 
-        //                return ctx.SaveChanges() == 1;
-        //            }
-        //        }
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
-        //        public bool SoftDeleteProduct(int id)
-        //        {
-        //            using (var ctx = new ApplicationDbContext())
-        //            {
-        //                var entity =
-        //                    ctx
-        //                    .Products
-        //                    .Single(e => e.ProductId == id);
+        public bool SoftDeleteService(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Services
+                    .Single(e => e.ServiceId == id);
 
-        //                entity.IsActive = false;
+                entity.IsActive = false;
 
-        //                return ctx.SaveChanges() == 1;
-        //            }
-        //        }
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

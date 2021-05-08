@@ -3,19 +3,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Products</h2>
-<p>
-    @Html.ActionLink("Create New Product", "Create")
-</p>
+<div class="jumbotron" style="background-color:white">
+    <h2 style="font-weight:bolder">Products</h2>
+    <p>
+        @Html.ActionLink("Create New Product", "Create")
+    </p>
 
-@if(TempData.ContainsKey("SaveResult"))
-{
-    <div class="alert alert-success fade in" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveResult"]
-    </div>
+    @if (TempData.ContainsKey("SaveResult"))
+    {
+        <div class="alert alert-success fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveResult"]
+        </div>
     }
 
     <table class="table">
@@ -30,34 +31,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cost)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.IsFood)
-                </th>*@
+
             <th></th>
         </tr>
         @foreach (var product in Model)
         {
             if (product.IsActive)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(r => product.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(r => product.Inventory)
-                </td>
-                <td>
-                    @Html.DisplayFor(r => product.Cost)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(r => product.IsFood)
-                    </td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = product.ProductId }) |
-                    @Html.ActionLink("Details", "Details", new { id = product.ProductId }) |
-                    @Html.ActionLink("Delete", "SoftDelete", new { id = product.ProductId })
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(r => product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(r => product.Inventory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(r => product.Cost)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = product.ProductId }) |
+                        @Html.ActionLink("Details", "Details", new { id = product.ProductId }) |
+                        @Html.ActionLink("Delete", "SoftDelete", new { id = product.ProductId })
+                    </td>
+                </tr>
             }
         }
     </table>
+</div>

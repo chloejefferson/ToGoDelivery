@@ -47,6 +47,73 @@ namespace ToGoDelivery.Controllers
             return View(model);
 
         }
+        public ActionResult Details(int id)
+        {
+            var svc = CreateServiceService();
+            var model = svc.GetServiceById(id);
+
+            return View(model);
+        }
+        public ActionResult Edit(int id)
+        {
+            var svc = CreateServiceService();
+            var detail = svc.GetServiceById(id);
+            var model =
+                new ServiceEdit
+                {
+                    ServiceId = detail.ServiceId,
+                    Name = detail.Name,
+                    Cost = detail.Cost,
+                };
+
+            return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ServiceEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.ServiceId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            };
+
+            var svc = CreateServiceService();
+
+            if (svc.UpdateService(model))
+            {
+                TempData["SaveResult"] = "Your Service was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your Service could not be updated.");
+            return View(model);
+        }
+
+        [ActionName("SoftDelete")]
+        public ActionResult SoftDelete(int id)
+        {
+            var svc = CreateServiceService();
+            var model = svc.GetServiceById(id);
+
+            return View(model);
+        }
+
+
+        [ActionName("SoftDelete"), HttpPost, ValidateAntiForgeryToken]
+        public ActionResult SoftDeletePost(int id)
+        {
+            var svc = CreateServiceService();
+
+            svc.SoftDeleteService(id);
+
+            TempData["SaveResult"] = "Your Service was (soft) deleted.";
+
+            return RedirectToAction("Index");
+
+        }
 
         private ServiceService CreateServiceService()
         {
@@ -54,5 +121,6 @@ namespace ToGoDelivery.Controllers
             var svc = new ServiceService(userId);
             return svc;
         }
+
     }
 }

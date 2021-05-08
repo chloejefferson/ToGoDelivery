@@ -1,11 +1,11 @@
-﻿@model ToGoDelivery.Models.Service.ServiceCreate
+﻿@model ToGoDelivery.Models.Service.ServiceEdit
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 <div class="jumbotron" style="background-color:white">
 
-    <h2 style="font-weight:bolder">Create</h2>
+    <h2 style="font-weight:bolder">Edit</h2>
 
 
     @using (Html.BeginForm())
@@ -13,9 +13,18 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>ServiceCreate</h4>
+            <h4>ServiceEdit</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ServiceId)
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.ServiceId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ServiceId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -34,7 +43,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
         </div>
