@@ -48,7 +48,7 @@
                     @Html.DisplayFor(r => order.OrderId)
                 </td>
                 <td>
-                    @Html.DisplayFor(r => order.FinalTotalCost)
+                    @Html.DisplayFor(r => order.FinalTotalCost.ToString("C"))
                 </td>
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = order.OrderId }) |

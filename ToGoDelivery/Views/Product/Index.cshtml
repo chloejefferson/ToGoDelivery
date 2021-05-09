@@ -46,7 +46,7 @@
                         @Html.DisplayFor(r => product.Inventory)
                     </td>
                     <td>
-                        @Html.DisplayFor(r => product.Cost)
+                        @Html.DisplayFor(r => product.Cost.ToString("C"))
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = product.ProductId }) |

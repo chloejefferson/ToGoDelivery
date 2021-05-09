@@ -40,7 +40,7 @@
                         @Html.DisplayFor(r => model.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(r => model.Cost)
+                        @Html.DisplayFor(r => model.Cost.ToString("C"))
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = model.ServiceId }) |

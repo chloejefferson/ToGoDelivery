@@ -13,6 +13,7 @@ namespace ToGoDelivery.Services
     public class OrderService
     {
         private readonly Guid _userId;
+        public int _currentOrderId = new int();
 
         public OrderService(Guid userId)
         {
@@ -93,9 +94,11 @@ namespace ToGoDelivery.Services
                     .OrderByDescending(e => e.DateCreated)
                     .First();
 
+                _currentOrderId = entity.OrderId;
                 return
                                 new OrderDetail
                                 {
+                                    OrderId = entity.OrderId,
                                     OrderProducts = HelperConvertOrderProductsToOPListItem(entity.OrderProducts),
                                     OrderServices = HelperConvertOrderServiceToOSListItem(entity.OrderServices)
                                 };
