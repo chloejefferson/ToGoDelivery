@@ -241,7 +241,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\OrderProduct\Index.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\OrderService\Index.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
@@ -253,6 +252,9 @@
     <Content Include="Views\Service\Details.cshtml" />
     <Content Include="Views\Service\Edit.cshtml" />
     <Content Include="Views\Service\SoftDelete.cshtml" />
+    <Content Include="Views\Order\AdminIndex.cshtml" />
+    <Content Include="Views\Order\CustomerIndex.cshtml" />
+    <Content Include="Views\Order\CustomerCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

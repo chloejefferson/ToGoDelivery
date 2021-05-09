@@ -21,8 +21,5 @@ namespace ToGoDelivery.Data
 
         [Required, Range(1,Int32.MaxValue)]
         public int ProductCount { get; set; }
-
-        [Required]
-        public bool IsActive { get; set; }
     }
 }

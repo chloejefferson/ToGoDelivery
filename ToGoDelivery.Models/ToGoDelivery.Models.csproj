@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderProduct\OrderProductListItem.cs" />
+    <Compile Include="OrderService\OrderServiceListItem.cs" />
+    <Compile Include="Order\OrderCreate.cs" />
+    <Compile Include="Order\OrderDetail.cs" />
+    <Compile Include="Order\OrderEdit.cs" />
+    <Compile Include="Order\OrderListItem.cs" />
     <Compile Include="Product\ProductCreate.cs" />
     <Compile Include="Product\ProductDetail.cs" />
     <Compile Include="Product\ProductEdit.cs" />
@@ -64,14 +70,16 @@
     <Compile Include="Service\ServiceEdit.cs" />
     <Compile Include="Service\ServiceListItem.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OrderProduct\" />
-    <Folder Include="OrderService\" />
-    <Folder Include="Order\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToGoDelivery.Data\ToGoDelivery.Data.csproj">
+      <Project>{F9653DCE-C580-42C8-84B1-DCB220147DA7}</Project>
+      <Name>ToGoDelivery.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

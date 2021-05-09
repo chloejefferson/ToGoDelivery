@@ -23,6 +23,9 @@ namespace ToGoDelivery.Data
         [ForeignKey("CustomerId")]
         public ApplicationUser Customer { get; set; }
 
+        public virtual List<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
+        public virtual List<OrderService> OrderServices { get; set; } = new List<OrderService>();
+
         [Required]
         public DateTime DateCreated { get; set; }
 
@@ -47,7 +50,7 @@ namespace ToGoDelivery.Data
 
         public bool IsFinalized { get; set; }
 
-        public DateTime DateFinalized { get; set; }
+        public DateTime? DateFinalized { get; set; }
 
 
 
