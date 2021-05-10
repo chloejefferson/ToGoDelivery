@@ -23,15 +23,36 @@ namespace ToGoDelivery.Controllers
             var svc = CreateOrderProductService();
             int orderId = svc.GetCurrentOrderId();
 
-            if (svc.CreateOrderProduct(orderId, productId))
+            if (!svc.CheckForCurrentOrderProduct(orderId, productId))
             {
-                TempData["SaveResult"] = "Product was added to your cart.";
-                return RedirectToAction("Index","Menu");
+                if (svc.CreateOrderProduct(orderId, productId))
+                {
+                    TempData["SaveResult"] = "Product was added to your cart.";
+                    return RedirectToAction("Index", "Menu");
+                }
+
+                ModelState.AddModelError("", "Product could not be added to your order. Have you started a new order?");
+
+                return RedirectToAction("Index", "Menu");
+            }
+
+            return AddProductToOrderProduct(productId);
+        }
+
+        public ActionResult AddProductToOrderProduct(int productId)
+        {
+            var svc = CreateOrderProductService();
+            int orderId = svc.GetCurrentOrderId();
+
+            if(svc.AddProduct(orderId, productId))
+            {
+                TempData["SaveResult"] = "One more was added to your cart.";
+                return RedirectToAction("Index", "Menu");
             }
 
             ModelState.AddModelError("", "Product could not be added to your order. Have you started a new order?");
 
-            return RedirectToAction("Index","Menu");
+            return RedirectToAction("Index", "Menu");
         }
 
         public ActionResult GetOrderProducts(int orderId)

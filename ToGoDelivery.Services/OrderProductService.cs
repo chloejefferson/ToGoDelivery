@@ -91,5 +91,32 @@ namespace ToGoDelivery.Services
                 return orderId;
             }
         }
+
+        public bool CheckForCurrentOrderProduct(int orderId, int productId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                if(ctx.OrderProducts.Where(x => x.OrderId == orderId && x.ProductId ==productId).Any())
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool AddProduct(int orderId, int productId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .OrderProducts
+                    .Single(e => e.OrderId == orderId && e.ProductId == productId);
+
+                entity.ProductCount++;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

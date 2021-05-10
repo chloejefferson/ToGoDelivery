@@ -31,29 +31,29 @@
         </tr>
         @foreach (var op in Model.OrderProducts)
         {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(r => op.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(r => op.ProductCount)
-        </td>
-        <td>
-            @Html.DisplayFor(r => op.Cost)
-        </td>*@
-        <td>
-            @op.ProductName
-        </td>
-        <td>
-            @op.ProductCount
-        </td>
-        <td>
-            @op.Cost
-        </td>
-        <td>
-            @Html.ActionLink("Remove", "Delete", "OrderProduct", new { productId = op.ProductId }, null)
-        </td>
-    </tr>
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(r => op.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(r => op.ProductCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(r => op.Cost)
+                    </td>*@
+                <td>
+                    @op.ProductName
+                </td>
+                <td>
+                    @op.ProductCount
+                </td>
+                <td>
+                    @op.Cost
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "Delete", "OrderProduct", new { productId = op.ProductId }, null)
+                </td>
+            </tr>
         }
         @foreach (var os in Model.OrderServices)
         {
@@ -73,5 +73,7 @@
             </tr>
         }
     </table>
-    <div>Running Total Cost: @Model.FinalTotalCost</div>
+    @*<div>Running Total Cost: @Model.FinalTotalCost</div>*@
+    <div>Running Total Cost: @Model.TotalCostCalculator</div>
+
 </div>

@@ -52,7 +52,26 @@ namespace ToGoDelivery.Data
 
         public DateTime? DateFinalized { get; set; }
 
+        [NotMapped]
+        public decimal TotalCostCalculator
+        {
+            get
+            {
+                decimal cost = 0;
 
+                foreach (OrderProduct op in OrderProducts)
+                {
+                    cost += (op.Product.Cost * op.ProductCount);
+                }
+
+                foreach (OrderService os in OrderServices)
+                {
+                    cost += (os.Service.Cost);
+                }
+
+                return OrderProducts.Count > 0 || OrderServices.Count > 0 ? cost : 0;
+            }
+        }
 
     }
 }

@@ -130,6 +130,7 @@ namespace ToGoDelivery.Services
                     IsFavorite = entity.IsFavorite,
                     IsFinalized = entity.IsFinalized,
                     IsPrepared = entity.IsPrepared,
+                    TotalCostCalculator = entity.TotalCostCalculator,
                 };
             }
         }

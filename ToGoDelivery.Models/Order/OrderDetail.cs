@@ -47,5 +47,8 @@ namespace ToGoDelivery.Models.Order
 
         [Display(Name = "Finalized Date")]
         public DateTime? DateFinalized { get; set; }
+
+        [Display(Name = "Running Total Cost"), DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal TotalCostCalculator { get; set; }
     }
 }
