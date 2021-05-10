@@ -263,6 +263,7 @@
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Order\DetailById.cshtml" />
     <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\Order\SoftDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

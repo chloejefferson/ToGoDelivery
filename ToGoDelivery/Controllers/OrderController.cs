@@ -151,7 +151,7 @@ namespace ToGoDelivery.Controllers
 
             TempData["SaveResult"] = "Your order was (soft) deleted.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminIndex");
 
         }
 

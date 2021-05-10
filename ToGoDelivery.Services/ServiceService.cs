@@ -41,6 +41,7 @@ namespace ToGoDelivery.Services
                 var query =
                     ctx
                     .Services
+                    .OrderBy(e => e.Name)
                     .Select(
                             e =>
                                 new ServiceListItem

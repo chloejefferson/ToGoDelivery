@@ -23,8 +23,8 @@ namespace ToGoDelivery.Models.Order
         [Required, Display(Name = "Created Date")]
         public DateTime DateCreated { get; set; }
 
-        //[Required]
-        //public bool IsActive { get; set; }
+        [Required]
+        public bool IsActive { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}"), Display(Name = "Final Total Cost")]
         public decimal FinalTotalCost { get; set; }

@@ -42,6 +42,7 @@ namespace ToGoDelivery.Services
                 var query =
                     ctx
                     .Products
+                    .OrderBy(e => e.Name)
                     .Select(
                             e =>
                                 new ProductListItem

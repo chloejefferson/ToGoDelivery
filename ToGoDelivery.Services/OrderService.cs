@@ -44,6 +44,7 @@ namespace ToGoDelivery.Services
                 var query =
                     ctx
                     .Orders
+                    .OrderByDescending(e => e.DateCreated)
                     .Select(
                             e =>
                                 new OrderListItem
@@ -52,7 +53,8 @@ namespace ToGoDelivery.Services
                                     CustomerId = e.CustomerId,
                                     Customer = e.Customer,
                                     DateCreated = e.DateCreated,
-                                    FinalTotalCost = e.FinalTotalCost
+                                    FinalTotalCost = e.FinalTotalCost,
+                                    IsActive = e.IsActive,
                                 }
                         );
 
@@ -68,6 +70,7 @@ namespace ToGoDelivery.Services
                     ctx
                     .Orders
                     .Where(e => e.CustomerId == _userId.ToString())
+                    .OrderByDescending(e => e.DateCreated)
                     .Select(
                             e =>
                                 new OrderListItem
@@ -76,7 +79,8 @@ namespace ToGoDelivery.Services
                                     CustomerId = e.CustomerId,
                                     Customer = e.Customer,
                                     DateCreated = e.DateCreated,
-                                    FinalTotalCost = e.FinalTotalCost
+                                    FinalTotalCost = e.FinalTotalCost,
+                                    IsActive = e.IsActive,
                                 }
                         );
 

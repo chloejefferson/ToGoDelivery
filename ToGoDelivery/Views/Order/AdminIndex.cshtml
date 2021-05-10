@@ -7,7 +7,6 @@
     @*<div>
             @Html.ActionLink("Create New Order", "Create")
         </div>*@
-
     @if (TempData.ContainsKey("SaveResult"))
     {
         <div class="alert alert-success fade in" role="alert">
@@ -40,8 +39,8 @@
             </tr>
             @foreach (var order in Model)
             {
-                //if (order.IsActive)
-                //{
+                if (order.IsActive)
+                {
                 <tr>
                     <td>
                         @Html.DisplayFor(r => order.DateCreated)
@@ -61,7 +60,7 @@
                         @Html.ActionLink("Delete", "SoftDelete", new { id = order.OrderId })
                     </td>
                 </tr>
-                //}
+                }
             }
         </table>
     </div>

@@ -31,27 +31,16 @@
         @foreach (var op in Model.OrderProducts)
         {
             <tr>
-                @*<td>
-                        @Html.DisplayFor(r => op.ProductName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(r => op.ProductCount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(r => op.Cost)
-                    </td>*@
+
                 <td>
-                    @op.ProductName
+                    @Html.DisplayFor(r => op.ProductName)
                 </td>
                 <td>
-                    @op.ProductCount
+                    @Html.DisplayFor(r => op.ProductCount)
                 </td>
                 <td>
-                    @op.Cost
+                    @Html.DisplayFor(r => op.Cost)
                 </td>
-                @*<td>
-                    @Html.ActionLink("Remove", "Delete", "OrderProduct", new { productId = op.ProductId }, null)
-                </td>*@
             </tr>
         }
         @foreach (var os in Model.OrderServices)
@@ -66,13 +55,10 @@
                 <td>
                     @Html.DisplayFor(r => os.Cost)
                 </td>
-                @*<td>
-                        @Html.ActionLink("RE", "Details", new { id = order.OrderId }) |
-                    </td>*@
+
             </tr>
         }
     </table>
-    @*<div>Running Total Cost: @Model.FinalTotalCost</div>*@
     <div style="font-weight:bold">@Html.DisplayNameFor(model => model.FinalTotalCost): @Html.DisplayFor(model => model.FinalTotalCost)</div>
     <br />
     <div>@Html.ActionLink("Back to Order Detail Overview", "Details", new { id = Model.OrderId }) </div>
