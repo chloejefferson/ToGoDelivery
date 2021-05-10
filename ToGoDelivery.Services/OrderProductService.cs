@@ -32,33 +32,34 @@ namespace ToGoDelivery.Services
             }
         }
 
-        public IEnumerable<OrderProductListItem> GetOrderProductsByOrderId(int orderId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                    .OrderProducts
-                    .Include("Product")
-                    .Include("Order")
-                    //.Where(e => e.Order.CustomerId == _userId.ToString())
-                    .Where(e => e.OrderId == orderId)
-                    .Select(
-                            e =>
-                                new OrderProductListItem
-                                {
-                                    OrderId = e.OrderId,
-                                    CustomerEmail = e.Order.Customer.Email,
-                                    ProductId = e.ProductId,
-                                    ProductName = e.Product.Name,
-                                    ProductCount = e.ProductCount,
-                                    Cost = e.Product.Cost * e.ProductCount
-                                }
-                        );
+        ////this info is already displayed in orderdetail
+        //public IEnumerable<OrderProductListItem> GetOrderProductsByOrderId(int orderId)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //            .OrderProducts
+        //            .Include("Product")
+        //            .Include("Order")
+        //            //.Where(e => e.Order.CustomerId == _userId.ToString())
+        //            .Where(e => e.OrderId == orderId)
+        //            .Select(
+        //                    e =>
+        //                        new OrderProductListItem
+        //                        {
+        //                            OrderId = e.OrderId,
+        //                            CustomerEmail = e.Order.Customer.Email,
+        //                            ProductId = e.ProductId,
+        //                            ProductName = e.Product.Name,
+        //                            ProductCount = e.ProductCount,
+        //                            Cost = e.Product.Cost * e.ProductCount
+        //                        }
+        //                );
 
-                return query.ToArray();
-            }
-        }
+        //        return query.ToArray();
+        //    }
+        //}
 
         public bool DeleteOrderProduct(int orderId, int productId)
         {

@@ -49,13 +49,13 @@ namespace ToGoDelivery.Controllers
             return RedirectToAction("Index", "Menu");
         }
 
-        public ActionResult GetOrderProducts(int orderId) //might not need this at all? I'm pulling order details from the orderdetail
-        {
-            var svc = CreateOrderProductService();
-            ViewBag.OrderProducts = svc.GetOrderProductsByOrderId(orderId);
+        //public ActionResult GetOrderProducts(int orderId) //might not need this at all? I'm pulling order details from the orderdetail
+        //{
+        //    var svc = CreateOrderProductService();
+        //    ViewBag.OrderProducts = svc.GetOrderProductsByOrderId(orderId);
 
-            return ViewBag.OrderProducts;//View(model); //This might need to be packaged differently since there is no view... may need to make an IEnumerable instead of action???
-        }
+        //    return ViewBag.OrderProducts;//View(model); //This might need to be packaged differently since there is no view... may need to make an IEnumerable instead of action???
+        //}
 
         private Services.OrderProductService CreateOrderProductService()
         {

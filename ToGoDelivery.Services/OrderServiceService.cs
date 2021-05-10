@@ -31,31 +31,32 @@ namespace ToGoDelivery.Services
             }
         }
 
-        public IEnumerable<OrderServiceListItem> GetOrderServicesByOrderId(int orderId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                    .OrderServices
-                    .Include("Service")
-                    .Include("Order")
-                    .Where(e => e.OrderId == orderId)
-                    .Select(
-                            e =>
-                                new OrderServiceListItem
-                                {
-                                    OrderId = e.OrderId,
-                                    CustomerEmail = e.Order.Customer.Email,
-                                    ServiceId = e.ServiceId,
-                                    ServiceName = e.Service.Name,
-                                    Cost = e.Service.Cost,
-                                }
-                        );
+        //this info is already displayed in orderdetail
+        //public IEnumerable<OrderServiceListItem> GetOrderServicesByOrderId(int orderId)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //            .OrderServices
+        //            .Include("Service")
+        //            .Include("Order")
+        //            .Where(e => e.OrderId == orderId)
+        //            .Select(
+        //                    e =>
+        //                        new OrderServiceListItem
+        //                        {
+        //                            OrderId = e.OrderId,
+        //                            CustomerEmail = e.Order.Customer.Email,
+        //                            ServiceId = e.ServiceId,
+        //                            ServiceName = e.Service.Name,
+        //                            Cost = e.Service.Cost,
+        //                        }
+        //                );
 
-                return query.ToArray();
-            }
-        }
+        //        return query.ToArray();
+        //    }
+        //}
 
         public bool DeleteOrderService(int orderId, int serviceId)
         {
@@ -86,6 +87,18 @@ namespace ToGoDelivery.Services
                 int orderId = entity.OrderId;
 
                 return orderId;
+            }
+        }
+
+        public bool CheckForCurrentOrderService (int orderId, int serviceId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                if (ctx.OrderServices.Where(x => x.OrderId == orderId && x.ServiceId == serviceId).Any())
+                {
+                    return true;
+                }
+                return false;
             }
         }
     }

@@ -92,9 +92,9 @@
         <td style="display:none">
             @os.ServiceId
         </td>
-        @*<td>
-            @Html.ActionLink("Remove", "Delete", "OrderService", new { id = os.ServiceId}, null) |
-        </td>*@
+        <td>
+            @Html.ActionLink("Remove", "Delete", "OrderService", new { serviceId = os.ServiceId}, null) 
+        </td>
     </tr>
         }
     </table>

@@ -18,6 +18,8 @@ namespace ToGoDelivery.Controllers
             var svc = CreateOrderServiceService();
             int orderId = svc.GetCurrentOrderId();
 
+            if (!svc.CheckForCurrentOrderService(orderId, serviceId))
+            {
                 if (svc.CreateOrderService(orderId, serviceId))
                 {
                     TempData["SaveResult"] = "Service was added to your cart.";
@@ -27,15 +29,19 @@ namespace ToGoDelivery.Controllers
                 ModelState.AddModelError("", "Service could not be added to your order. Have you started a new order?");
 
                 return RedirectToAction("Index", "Menu");
+            }
+
+            TempData["SaveResult"] = "You already have this service in your cart.";
+            return RedirectToAction("Index", "Menu");
         }
 
-        public ActionResult GetOrderServices(int orderId) //might not need this at all? I'm pulling order details from the orderdetail
-        {
-            var svc = CreateOrderServiceService();
-            ViewBag.OrderServices = svc.GetOrderServicesByOrderId(orderId);
+        //public ActionResult GetOrderServices(int orderId) //might not need this at all? I'm pulling order details from the orderdetail
+        //{
+        //    var svc = CreateOrderServiceService();
+        //    ViewBag.OrderServices = svc.GetOrderServicesByOrderId(orderId);
 
-            return ViewBag.OrderServices;//View(model); //This might need to be packaged differently since there is no view... may need to make an IEnumerable instead of action???
-        }
+        //    return ViewBag.OrderServices;//View(model); //This might need to be packaged differently since there is no view... may need to make an IEnumerable instead of action???
+        //}
 
 
         public ActionResult Delete(int serviceId)
