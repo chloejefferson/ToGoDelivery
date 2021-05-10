@@ -176,6 +176,22 @@ namespace ToGoDelivery.Services
             }
         }
 
+        public bool FinalizeOrder (int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Orders
+                    .Single(e => e.OrderId == id);
+
+                entity.IsFinalized = true;
+                entity.DateFinalized = DateTime.Now;
+                entity.FinalTotalCost = entity.TotalCostCalculator;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
         public bool SoftDeleteOrder(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -200,7 +216,8 @@ namespace ToGoDelivery.Services
                 {
                     ProductCount = op.ProductCount,
                     ProductName = op.Product.Name,
-                    Cost = op.Product.Cost * decimal.Parse(op.ProductCount.ToString())
+                    Cost = op.Product.Cost * decimal.Parse(op.ProductCount.ToString()),
+                    ProductId = op.ProductId,
                 };
                 newList.Add(listItem);
             }
@@ -215,7 +232,8 @@ namespace ToGoDelivery.Services
                 var listItem = new OrderServiceListItem
                 {
                     ServiceName = os.Service.Name,
-                    Cost = os.Cost,
+                    Cost = os.Service.Cost,
+                    ServiceId = os.ServiceId,
                 };
                 newList.Add(listItem);
             }

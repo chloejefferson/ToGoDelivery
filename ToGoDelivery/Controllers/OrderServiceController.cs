@@ -51,11 +51,11 @@ namespace ToGoDelivery.Controllers
 
             if (svc.DeleteOrderService(orderId, serviceId))
             {
-                TempData["SaveResult"] = "Product was removed from your cart.";
+                TempData["SaveResult"] = "Service was removed from your cart.";
                 return RedirectToAction("CustomerCart", "Order");
             }
 
-            ModelState.AddModelError("", "Product could not be removed from your cart.");
+            ModelState.AddModelError("", "Service could not be removed from your cart.");
 
             return RedirectToAction("CustomerCart", "Order");
         }

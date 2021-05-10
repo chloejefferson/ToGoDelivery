@@ -119,6 +119,20 @@ namespace ToGoDelivery.Controllers
             return View(model);
         }
 
+        public ActionResult Finalize(int id)
+        {
+            var svc = CreateOrderService();
+
+            if (svc.FinalizeOrder(id))
+            {
+                TempData["SaveResult"] = "Your order was finalized.";
+                return RedirectToAction("CustomerIndex");
+            }
+
+            ModelState.AddModelError("", "Your order could not be finalized.");
+            return RedirectToAction("CustomerCart");
+        }
+
         [ActionName("SoftDelete")]
         public ActionResult SoftDelete(int id)
         {

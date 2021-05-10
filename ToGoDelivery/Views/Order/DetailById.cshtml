@@ -49,9 +49,9 @@
                 <td>
                     @op.Cost
                 </td>
-                <td>
+                @*<td>
                     @Html.ActionLink("Remove", "Delete", "OrderProduct", new { productId = op.ProductId }, null)
-                </td>
+                </td>*@
             </tr>
         }
         @foreach (var os in Model.OrderServices)
@@ -73,7 +73,7 @@
         }
     </table>
     @*<div>Running Total Cost: @Model.FinalTotalCost</div>*@
-    <div>@Html.DisplayNameFor(model => model.FinalTotalCost): @Html.DisplayFor(model => model.FinalTotalCost)</div>
+    <div style="font-weight:bold">@Html.DisplayNameFor(model => model.FinalTotalCost): @Html.DisplayFor(model => model.FinalTotalCost)</div>
     <br />
     <div>@Html.ActionLink("Back to Order Detail Overview", "Details", new { id = Model.OrderId }) </div>
 
