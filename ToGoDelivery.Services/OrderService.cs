@@ -137,7 +137,7 @@ namespace ToGoDelivery.Services
                     ctx
                     .Orders
                     .Include("Customer")
-                    .Single (e => e.OrderId == id);
+                    .Single(e => e.OrderId == id);
 
                 return
                 new OrderDetail
@@ -176,7 +176,7 @@ namespace ToGoDelivery.Services
             }
         }
 
-        public bool FinalizeOrder (int id)
+        public bool FinalizeOrder(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -238,6 +238,18 @@ namespace ToGoDelivery.Services
                 newList.Add(listItem);
             }
             return newList;
+        }
+
+        public bool CheckForCurrentCart()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                if (ctx.Orders.Where(e => e.CustomerId == _userId.ToString() && !e.IsFinalized).Any())
+                {
+                    return true;
+                }
+                return false;
+            }
         }
     }
 }

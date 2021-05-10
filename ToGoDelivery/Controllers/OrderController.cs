@@ -35,13 +35,12 @@ namespace ToGoDelivery.Controllers
         public ActionResult CustomerCart()
         {
             var svc = CreateOrderService();
-            //if (svc._currentOrderId != null)
-            //{
+            if (svc.CheckForCurrentCart())
+            {
                 var model = svc.GetMostRecentOrder();
                 return View(model);
-            //}
-
-            //return Create();
+            }
+            return Create();
         }
 
         public ActionResult Create()

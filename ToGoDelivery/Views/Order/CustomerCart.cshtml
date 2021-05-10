@@ -71,7 +71,7 @@
     <table class="table table-hover">
         <tr>
             <th>Name</th>
-            <th style="color:white">..........</th>
+            <th style="color:white"></th>
             <th>Cost</th>
             <th></th>
 
@@ -82,7 +82,7 @@
                 <td>
                     @os.ServiceName
                 </td>
-                <td style="color:white">..........</td>
+                <td style="color:white"></td>
                 <td>
                     @os.Cost.ToString("C")
 
@@ -104,7 +104,10 @@
         </div>*@
     <div>
         @*<input type="button" value="Finalize Order" onclick="window.location= '@Html.ActionLink( "Finalize", "Order", new {id = Model.OrderId }, null)'" />*@
-        @Html.ActionLink("Finalize Order", "Finalize", "Order", new { id = Model.OrderId }, null)
+        @Html.ActionLink("Finalize Order", "Finalize", "Order", new { id = Model.OrderId }, new { @class = "btn btn-default" })
+        @*, @style="color: black; border: 1px solid grey;"*@
+        @*<button onclick="location.href='@Url.ActionLink("Order", "Finalize", "Order", new { id = Model.OrderId }, null)'">Finalize Order</button>*@
+
 
     </div>
 
