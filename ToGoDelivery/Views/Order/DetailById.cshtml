@@ -1,0 +1,81 @@
+﻿@model ToGoDelivery.Models.Order.OrderDetail
+
+@{
+    ViewBag.Title = "DetailById";
+}
+<div class="jumbotron" style="background-color:white">
+    <h2 style="font-weight:bolder">More Order Details</h2>
+    @Html.HiddenFor(model => model.OrderId)
+
+    @if (TempData.ContainsKey("SaveResult"))
+    {
+        <div class="alert alert-success fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveResult"]
+        </div>
+    }
+
+    <div>@Html.DisplayNameFor(model => model.DateCreated): @Html.DisplayFor(model => model.DateCreated)</div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+
+            <th>Count</th>
+
+            <th>Cost</th>
+            <th></th>
+        </tr>
+        @foreach (var op in Model.OrderProducts)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(r => op.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(r => op.ProductCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(r => op.Cost)
+                    </td>*@
+                <td>
+                    @op.ProductName
+                </td>
+                <td>
+                    @op.ProductCount
+                </td>
+                <td>
+                    @op.Cost
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "Delete", "OrderProduct", new { productId = op.ProductId }, null)
+                </td>
+            </tr>
+        }
+        @foreach (var os in Model.OrderServices)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(r => os.ServiceName)
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    @Html.DisplayFor(r => os.Cost)
+                </td>
+                @*<td>
+                        @Html.ActionLink("RE", "Details", new { id = order.OrderId }) |
+                    </td>*@
+            </tr>
+        }
+    </table>
+    @*<div>Running Total Cost: @Model.FinalTotalCost</div>*@
+    <div>@Html.DisplayNameFor(model => model.FinalTotalCost): @Html.DisplayFor(model => model.FinalTotalCost)</div>
+    <br />
+    <div>@Html.ActionLink("Back to Order Detail Overview", "Details", new { id = Model.OrderId }) </div>
+
+
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,10 +13,53 @@ namespace ToGoDelivery.Controllers
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        // GET: OrderService
-        public ActionResult Index()
+        public ActionResult Create(int serviceId)
         {
-            return View(_db.OrderServices.ToList());
+            var svc = CreateOrderServiceService();
+            int orderId = svc.GetCurrentOrderId();
+
+                if (svc.CreateOrderService(orderId, serviceId))
+                {
+                    TempData["SaveResult"] = "Service was added to your cart.";
+                    return RedirectToAction("Index", "Menu");
+                }
+
+                ModelState.AddModelError("", "Service could not be added to your order. Have you started a new order?");
+
+                return RedirectToAction("Index", "Menu");
         }
+
+        public ActionResult GetOrderServices(int orderId) //might not need this at all? I'm pulling order details from the orderdetail
+        {
+            var svc = CreateOrderServiceService();
+            ViewBag.OrderServices = svc.GetOrderServicesByOrderId(orderId);
+
+            return ViewBag.OrderServices;//View(model); //This might need to be packaged differently since there is no view... may need to make an IEnumerable instead of action???
+        }
+
+
+        public ActionResult Delete(int serviceId)
+        {
+            var svc = CreateOrderServiceService();
+            int orderId = svc.GetCurrentOrderId();
+
+            if (svc.DeleteOrderService(orderId, serviceId))
+            {
+                TempData["SaveResult"] = "Product was removed from your cart.";
+                return RedirectToAction("CustomerCart", "Order");
+            }
+
+            ModelState.AddModelError("", "Product could not be removed from your cart.");
+
+            return RedirectToAction("CustomerCart", "Order");
+        }
+
+        private Services.OrderServiceService CreateOrderServiceService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new Services.OrderServiceService(userId);
+            return service;
+        }
+
     }
 }

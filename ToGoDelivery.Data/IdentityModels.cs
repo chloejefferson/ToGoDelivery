@@ -65,5 +65,9 @@ namespace ToGoDelivery.Data
                 HasKey(iur => iur.UserId);
             }
         }
+
+        //public System.Data.Entity.DbSet<ToGoDelivery.Models.Order.OrderEdit> OrderEdits { get; set; }
+
+        //public System.Data.Entity.DbSet<ToGoDelivery.Data.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

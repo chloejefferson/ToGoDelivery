@@ -67,44 +67,57 @@ namespace ToGoDelivery.Controllers
             return View(model);
         }
 
-        //public ActionResult Edit(int id)
-        //{
-        //    var svc = CreateOrderService();
-        //    var detail = svc.GetOrderById(id);
-        //    var model =
-        //        new OrderEdit
-        //        {
-        //            OrderId = detail.OrderId,
-        //            Name = detail.Name,
-        //            Cost = detail.Cost,
-        //            Inventory = detail.Inventory
-        //        };
+        public ActionResult DetailById(int id)
+        {
+            var svc = CreateOrderService();
+            var model = svc.GetOrderDetailById(id);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
-        //[HttpPost, ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, OrderEdit model)
-        //{
-        //    if (!ModelState.IsValid) return View(model);
+        public ActionResult Edit(int id)
+        {
+            var svc = CreateOrderService();
+            var detail = svc.GetOrderById(id);
+            var model =
+                new OrderEdit
+                {
+                    OrderId = detail.OrderId,
+                    IsActive = detail.IsActive,
+                    IsFavorite = detail.IsFavorite,
+                    IsPrepared = detail.IsPrepared,
+                    IsFinalized = detail.IsFinalized
+                };
 
-        //    if (model.OrderId != id)
-        //    {
-        //        ModelState.AddModelError("", "ID Mismatch");
-        //        return View(model);
-        //    };
+            return View(model);
+        }
 
-        //    var svc = CreateOrderService();
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, OrderEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
 
-        //    if (svc.UpdateOrder(model))
-        //    {
-        //        TempData["SaveResult"] = "Your order was updated.";
-        //        return RedirectToAction("Index");
-        //    }
+            if (model.OrderId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            };
 
-        //    ModelState.AddModelError("", "Your order could not be updated.");
-        //    return View(model);
-        //}
+            var svc = CreateOrderService();
+
+            if (svc.UpdateOrder(model))
+            {
+                TempData["SaveResult"] = "Your order was updated.";
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("AdminIndex");
+                }
+                return RedirectToAction("CustomerIndex");
+            }
+
+            ModelState.AddModelError("", "Your order could not be updated.");
+            return View(model);
+        }
 
         [ActionName("SoftDelete")]
         public ActionResult SoftDelete(int id)

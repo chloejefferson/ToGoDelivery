@@ -84,6 +84,28 @@ namespace ToGoDelivery.Services
             }
         }
 
+        public OrderDetail GetOrderDetailById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Orders
+                    .Include("Customer")
+                    .Single(e => e.OrderId == id);
+
+                return
+                                new OrderDetail
+                                {
+                                    DateCreated = entity.DateCreated,
+                                    OrderId = entity.OrderId,
+                                    FinalTotalCost = entity.FinalTotalCost,
+                                    OrderProducts = HelperConvertOrderProductsToOPListItem(entity.OrderProducts),
+                                    OrderServices = HelperConvertOrderServiceToOSListItem(entity.OrderServices)
+                                };
+            }
+        }
+
         public OrderDetail GetMostRecentOrder()
         {
             using (var ctx = new ApplicationDbContext())
@@ -100,6 +122,7 @@ namespace ToGoDelivery.Services
                                 new OrderDetail
                                 {
                                     OrderId = entity.OrderId,
+                                    TotalCostCalculator = entity.TotalCostCalculator,
                                     OrderProducts = HelperConvertOrderProductsToOPListItem(entity.OrderProducts),
                                     OrderServices = HelperConvertOrderServiceToOSListItem(entity.OrderServices)
                                 };
@@ -135,21 +158,23 @@ namespace ToGoDelivery.Services
             }
         }
 
-        //public bool UpdateOrder(OrderEdit model)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //            .Orders
-        //            .Single(e => e.OrderId == model.OrderId);
-        //        entity.Name = model.Name;
-        //        entity.Inventory = model.Inventory;
-        //        entity.Cost = model.Cost;
+        public bool UpdateOrder(OrderEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Orders
+                    .Single(e => e.OrderId == model.OrderId);
 
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
+                entity.IsActive = model.IsActive;
+                entity.IsFavorite = model.IsFavorite;
+                entity.IsFinalized = model.IsFinalized;
+                entity.IsPrepared = model.IsPrepared;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
         public bool SoftDeleteOrder(int id)
         {

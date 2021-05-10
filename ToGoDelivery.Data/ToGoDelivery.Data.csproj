@@ -71,6 +71,10 @@
     <Compile Include="Migrations\202105090314109_NullableOrderDateFinalized.Designer.cs">
       <DependentUpon>202105090314109_NullableOrderDateFinalized.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105100318299_NotMapped.cs" />
+    <Compile Include="Migrations\202105100318299_NotMapped.Designer.cs">
+      <DependentUpon>202105100318299_NotMapped.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderProduct.cs" />
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105090314109_NullableOrderDateFinalized.resx">
       <DependentUpon>202105090314109_NullableOrderDateFinalized.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105100318299_NotMapped.resx">
+      <DependentUpon>202105100318299_NotMapped.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

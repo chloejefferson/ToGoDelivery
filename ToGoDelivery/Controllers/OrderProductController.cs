@@ -12,12 +12,6 @@ namespace ToGoDelivery.Controllers
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        // GET: OrderProduct
-        //public ActionResult Index()
-        //{
-        //    return View(_db.OrderProducts.ToList());
-        //}
-
         public ActionResult Create(int productId)
         {
             var svc = CreateOrderProductService();
@@ -55,7 +49,7 @@ namespace ToGoDelivery.Controllers
             return RedirectToAction("Index", "Menu");
         }
 
-        public ActionResult GetOrderProducts(int orderId)
+        public ActionResult GetOrderProducts(int orderId) //might not need this at all? I'm pulling order details from the orderdetail
         {
             var svc = CreateOrderProductService();
             ViewBag.OrderProducts = svc.GetOrderProductsByOrderId(orderId);

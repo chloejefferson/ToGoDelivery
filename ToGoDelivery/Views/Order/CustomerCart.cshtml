@@ -6,8 +6,11 @@
 <div class="jumbotron" style="background-color:white">
     <h2 style="font-weight:bolder">Orders</h2>
     @Html.HiddenFor(model => model.OrderId)
+
     <div>
-        @Html.ActionLink("Start a New Order", "Create", null, new { id = "myLink" })
+        @Html.ActionLink("Start a New Order", "Create", null, new { id = "myLink" }) |
+        @Html.ActionLink("Back to Menu", "Index", "Menu")
+
     </div>
 
     @if (TempData.ContainsKey("SaveResult"))
@@ -20,60 +23,83 @@
         </div>
     }
 
-    <table class="table">
+    <table class="table table-hover">
         <tr>
             <th>Name</th>
 
             <th>Count</th>
 
             <th>Cost</th>
+
+            <th>ID</th>
+
             <th></th>
+
         </tr>
         @foreach (var op in Model.OrderProducts)
         {
-            <tr>
-                @*<td>
-                        @Html.DisplayFor(r => op.ProductName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(r => op.ProductCount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(r => op.Cost)
-                    </td>*@
-                <td>
-                    @op.ProductName
-                </td>
-                <td>
-                    @op.ProductCount
-                </td>
-                <td>
-                    @op.Cost
-                </td>
-                <td>
-                    @Html.ActionLink("Remove", "Delete", "OrderProduct", new { productId = op.ProductId }, null)
-                </td>
-            </tr>
+    <tr>
+        @*<td>
+            @Html.DisplayFor(r => op.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(r => op.ProductCount)
+        </td>
+        <td>
+            @Html.DisplayFor(r => op.Cost)
+        </td>*@
+        <td>
+            @op.ProductName
+        </td>
+        <td>
+            @op.ProductCount
+        </td>
+        <td>
+            @op.Cost.ToString("C")
+        </td>
+        <td>
+            @op.ProductId
+        </td>
+        <td>
+            @Html.ActionLink("Remove", "Delete", "OrderProduct", new { productId = op.ProductId }, null)
+        </td>
+
+    </tr>
         }
         @foreach (var os in Model.OrderServices)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(r => os.ServiceName)
-                </td>
-                <td>
-                    1
-                </td>
-                <td>
-                    @Html.DisplayFor(r => os.Cost)
-                </td>
-                @*<td>
-                        @Html.ActionLink("RE", "Details", new { id = order.OrderId }) |
-                    </td>*@
-            </tr>
+    <tr>
+        @*<td>
+            @Html.DisplayFor(r => os.ServiceName)
+        </td>
+        <td>
+            1
+        </td>
+        <td>
+            @Html.DisplayFor(r => os.Cost.ToString("C"))
+        </td>*@
+        <td>
+            @os.ServiceName
+        </td>
+        <td>
+            n/a
+        </td>
+        <td>
+            @os.Cost.ToString("C")
+            @*@Html.DisplayFor(os => os.Cost)*@
+
+        </td>
+        <td style="display:none">
+            @os.ServiceId
+        </td>
+        @*<td>
+            @Html.ActionLink("Remove", "Delete", "OrderService", new { id = os.ServiceId}, null) |
+        </td>*@
+    </tr>
         }
     </table>
-    @*<div>Running Total Cost: @Model.FinalTotalCost</div>*@
-    <div>Running Total Cost: @Model.TotalCostCalculator</div>
+    <div>
+        Running Total Cost: @Html.DisplayFor(r => Model.TotalCostCalculator)
+    </div>
 
 </div>
