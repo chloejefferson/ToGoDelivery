@@ -16,6 +16,7 @@ namespace ToGoDelivery.Models.Service
         public string Name { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Cost { get; set; }
 
         [Required, Display(Name = "Active?")]

@@ -16,6 +16,7 @@ namespace ToGoDelivery.Models.Product
 
         public int Inventory { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Cost { get; set; }
 
         [Display(Name = "Active?")]

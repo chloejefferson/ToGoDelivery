@@ -11,21 +11,22 @@ namespace ToGoDelivery.Models.Order
 {
     public class OrderListItem
     {
-        [Required]
+        [Required, Display(Name = "Order ID")]
         public int OrderId { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Customer ID")]
         public string CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
         public ApplicationUser Customer { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Created Date")]
         public DateTime DateCreated { get; set; }
 
         //[Required]
         //public bool IsActive { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}"), Display(Name = "Final Total Cost")]
         public decimal FinalTotalCost { get; set; }
 
         //public bool IsFavorite { get; set; }

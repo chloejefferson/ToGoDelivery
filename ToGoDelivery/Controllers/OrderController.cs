@@ -35,18 +35,15 @@ namespace ToGoDelivery.Controllers
         public ActionResult CustomerCart()
         {
             var svc = CreateOrderService();
-            var model = svc.GetMostRecentOrder();
+            //if (svc._currentOrderId != null)
+            //{
+                var model = svc.GetMostRecentOrder();
+                return View(model);
+            //}
 
-            return View(model);
+            //return Create();
         }
 
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Create()
         public ActionResult Create()
         {
             var svc = CreateOrderService();

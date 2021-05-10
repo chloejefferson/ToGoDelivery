@@ -18,6 +18,7 @@ namespace ToGoDelivery.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -222,6 +223,30 @@ namespace ToGoDelivery.Controllers
             return View(model);
         }
 
+        [AllowAnonymous, HttpGet]
+        public ActionResult RegisterRole()
+        {
+            ViewBag.Name = new SelectList(_db.Roles.ToList(), "Name", "Name");
+            ViewBag.UserName = new SelectList(_db.Users.ToList(), "Username", "Username");
+            return View();
+        }
+
+        [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
+        public ActionResult RegisterRole(RegisterViewModel model, ApplicationUser user)
+        {
+            var userId = _db.Users
+                .Where(i => i.UserName == user.UserName)
+                .Select(s => s.Id);
+            string updateId = "";
+            foreach (var i in userId)
+            {
+                updateId = i.ToString();
+            }
+            this.UserManager.AddToRole(updateId, model.Name);
+
+            return RedirectToAction("Index", "Home");
+
+        }
         //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]

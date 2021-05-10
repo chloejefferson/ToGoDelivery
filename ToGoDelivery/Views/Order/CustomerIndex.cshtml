@@ -5,9 +5,7 @@
 <div class="jumbotron" style="background-color:white">
     <h2 style="font-weight:bolder">Orders</h2>
     <div>
-        @Html.ActionLink("Create New Order", "Create", null, new { id = "myLink" })
-    </div>
-    <div>
+        @Html.ActionLink("Create New Order", "Create", null, new { id = "myLink" }) |
         @Html.ActionLink("View Your Cart", "CustomerCart")
     </div>
 
@@ -48,10 +46,10 @@
                     @Html.DisplayFor(r => order.OrderId)
                 </td>
                 <td>
-                    @Html.DisplayFor(r => order.FinalTotalCost.ToString("C"))
+                    @Html.DisplayFor(r => order.FinalTotalCost)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = order.OrderId }) |
+                    @Html.ActionLink("Details", "Details", new { id = order.OrderId })
                 </td>
             </tr>
             //}

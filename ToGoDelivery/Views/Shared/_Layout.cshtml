@@ -26,10 +26,16 @@
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                        <li>@Html.ActionLink("Services", "Index", "Service")</li>
-                        <li>@Html.ActionLink("Orders (Admin)", "AdminIndex", "Order")</li>
-                        <li>@Html.ActionLink("My Orders (Customer)", "CustomerIndex", "Order")</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Orders", "AdminIndex", "Order")</li>
+                            <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                            <li>@Html.ActionLink("Services", "Index", "Service")</li>
+                            <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+
+                        }
+                        <li>@Html.ActionLink("Menu", "Index", "Menu")</li>
+                        <li>@Html.ActionLink("My Orders", "CustomerIndex", "Order")</li>
                         <li>@Html.ActionLink("Cart", "CustomerCart", "Order")</li>
 
                     }

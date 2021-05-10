@@ -13,7 +13,7 @@ namespace ToGoDelivery.Services
     public class OrderService
     {
         private readonly Guid _userId;
-        public int _currentOrderId = new int();
+        public static int? _currentOrderId;
 
         public OrderService(Guid userId)
         {
@@ -32,6 +32,7 @@ namespace ToGoDelivery.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Orders.Add(entity);
+                _currentOrderId = entity.OrderId;
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -112,15 +113,18 @@ namespace ToGoDelivery.Services
                 var entity =
                     ctx
                     .Orders
-                    .Single(e => e.OrderId == id);
+                    .Include("Customer")
+                    .Single (e => e.OrderId == id);
+
                 return
                 new OrderDetail
                 {
                     OrderId = entity.OrderId,
+                    CustomerId = entity.CustomerId,
                     Customer = entity.Customer,
+                    CustomerEmail = entity.Customer.Email,
                     DateCreated = entity.DateCreated,
                     DateFinalized = entity.DateFinalized,
-                    CustomerId = entity.CustomerId,
                     FinalTotalCost = entity.FinalTotalCost,
                     IsActive = entity.IsActive,
                     IsFavorite = entity.IsFavorite,

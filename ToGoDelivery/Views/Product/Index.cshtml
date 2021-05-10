@@ -5,9 +5,9 @@
 
 <div class="jumbotron" style="background-color:white">
     <h2 style="font-weight:bolder">Products</h2>
-    <p>
+    <div>
         @Html.ActionLink("Create New Product", "Create")
-    </p>
+    </div>
 
     @if (TempData.ContainsKey("SaveResult"))
     {
@@ -46,7 +46,7 @@
                         @Html.DisplayFor(r => product.Inventory)
                     </td>
                     <td>
-                        @Html.DisplayFor(r => product.Cost.ToString("C"))
+                        @Html.DisplayFor(r => product.Cost)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = product.ProductId }) |

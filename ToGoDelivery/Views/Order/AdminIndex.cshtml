@@ -53,7 +53,7 @@
                         @Html.DisplayFor(r => order.Customer.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(r => order.FinalTotalCost.ToString("C"))
+                        @Html.DisplayFor(r => order.FinalTotalCost)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = order.OrderId }) |
