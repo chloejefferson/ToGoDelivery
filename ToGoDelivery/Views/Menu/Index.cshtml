@@ -2,11 +2,11 @@
     ViewBag.Title = "Index";
 }
 
-<div class="jumbotron" style="background-color:white">
+<div class="jumbotron" style="background-color: #ffffe6">
     <h2 style="font-weight:bolder">Menu</h2>
     @*<div>
-        @Html.ActionLink("Create New Order", "Create", null, new { id = "myLink" })
-    </div>*@
+            @Html.ActionLink("Create New Order", "Create", null, new { id = "myLink" })
+        </div>*@
 
     @if (TempData.ContainsKey("SaveResult"))
     {
@@ -19,15 +19,20 @@
     }
 
     <table class="table table-hover">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Cost
-            </th>
+        @*<tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Cost
+                </th>
 
-            <th></th>
+                <th></th>
+            </tr>*@
+        <tr>
+            <td><h3>Products</h3></td>
+            <td></td>
+            <td></td>
         </tr>
         @foreach (var product in ViewBag.Products)
         {
@@ -41,11 +46,16 @@
                         @product.Cost.ToString("C")
                     </td>
                     <td>
-                        @Html.ActionLink("Add to Cart", "Create", "OrderProduct", new {productId = product.ProductId }, null)
+                        @Html.ActionLink("Add to Cart", "Create", "OrderProduct", new { productId = product.ProductId }, null)
                     </td>
                 </tr>
             }
         }
+        <tr>
+            <td @*style="font-size: large"*@><h3>Services</h3></td>
+            <td></td>
+            <td></td>
+        </tr>
         @foreach (var service in ViewBag.Services)
         {
             if (service.IsActive)
@@ -54,9 +64,9 @@
                     <td>
                         @service.Name
                     </td>
-                <td>
-                    @service.Cost.ToString("C")
-                </td>
+                    <td>
+                        @service.Cost.ToString("C")
+                    </td>
                     <td>
                         @Html.ActionLink("Add to Cart", "Create", "OrderService", new { serviceId = service.ServiceId }, null)
                     </td>

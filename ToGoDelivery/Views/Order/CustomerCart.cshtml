@@ -3,15 +3,15 @@
 @{
     ViewBag.Title = "Customer Cart";
 }
-<div class="jumbotron" style="background-color:white">
+<div class="jumbotron" style="background-color:#e3fefe">
     <h2 style="font-weight:bolder">Shopping Cart</h2>
     @Html.HiddenFor(model => model.OrderId)
 
-    <div>
+    @*<div>
         @Html.ActionLink("Start a New Order", "Create", null, new { id = "myLink" }) |
         @Html.ActionLink("Back to Menu", "Index", "Menu")
 
-    </div>
+    </div>*@
 
     @if (TempData.ContainsKey("SaveResult"))
     {
@@ -28,18 +28,24 @@
                 <th style="font-weight:bolder">Products</th>
             </tr>
         </table>*@
-    <div style="font-size: large">Products</div>
+    @*<div style="font-size: large">Products</div>*@
 
     <table class="table table-hover">
+        @*<tr>
+                <th>Name</th>
+
+                <th>Count</th>
+
+                <th>Cost</th>
+
+                <th></th>
+
+            </tr>*@
         <tr>
-            <th>Name</th>
-
-            <th>Count</th>
-
-            <th>Cost</th>
-
-            <th></th>
-
+            <td><h3>Products</h3></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         @foreach (var op in Model.OrderProducts)
         {
@@ -48,7 +54,7 @@
                     @op.ProductName
                 </td>
                 <td>
-                    @op.ProductCount
+                    X @op.ProductCount
                 </td>
                 <td>
                     @op.Cost.ToString("C")
@@ -59,23 +65,12 @@
 
             </tr>
         }
-    </table>
-    <br />
-    @*<table>
-            <tr>
-                <th style="font-weight:bolder" class="text-center">Services</th>
-            </tr>
-        </table>*@
-    <div style="font-size: large">Services</div>
-
-    <table class="table table-hover">
-        <tr>
-            <th>Name</th>
-            <th style="color:white"></th>
-            <th>Cost</th>
-            <th></th>
-
-        </tr>
+    <tr>
+        <td><h3>Services</h3></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
         @foreach (var os in Model.OrderServices)
         {
             <tr>
@@ -93,6 +88,24 @@
             </tr>
         }
     </table>
+    <br />
+    @*<table>
+            <tr>
+                <th style="font-weight:bolder" class="text-center">Services</th>
+            </tr>
+        </table>*@
+    @*<div style="font-size: large">Services</div>
+
+        <table class="table table-hover">
+            <tr>
+                <th>Name</th>
+                <th style="color:white"></th>
+                <th>Cost</th>
+                <th></th>
+
+            </tr>
+
+        </table>*@
     <div style="font-weight:bolder">
         <div style="text-align:right">
             Running Total Cost: @Html.DisplayFor(r => Model.TotalCostCalculator)
