@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ToGoDelivery.Models.Service.ServiceListItem>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="jumbotron" style="background-color:#e3fefe">
+
+    <h2 style="font-weight:bolder">Services</h2>
+    <div>
+        @Html.ActionLink("Create New Service", "Create")
+    </div>
+
+    @if (TempData.ContainsKey("SaveResult"))
+    {
+        <div class="alert alert-success fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveResult"]
+        </div>
+    }
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+
+            <th></th>
+        </tr>
+        @foreach (var model in Model)
+        {
+            if (model.IsActive)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(r => model.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(r => model.Cost)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = model.ServiceId }) |
+                        @Html.ActionLink("Details", "Details", new { id = model.ServiceId }) |
+                        @Html.ActionLink("Delete", "SoftDelete", new { id = model.ServiceId })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    </div>

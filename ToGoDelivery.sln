@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToGoDelivery", "ToGoDelivery\ToGoDelivery.csproj", "{7DDE55DE-4EF2-4CB6-8735-A676A6668069}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToGoDelivery.WebMVC", "ToGoDelivery\ToGoDelivery.WebMVC.csproj", "{7DDE55DE-4EF2-4CB6-8735-A676A6668069}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToGoDelivery.Data", "ToGoDelivery.Data\ToGoDelivery.Data.csproj", "{F9653DCE-C580-42C8-84B1-DCB220147DA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToGoDelivery.Models", "ToGoDelivery.Models\ToGoDelivery.Models.csproj", "{84F1837C-ABAD-4CEC-B08C-EF935EC0F921}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToGoDelivery.Services", "ToGoDelivery.Services\ToGoDelivery.Services.csproj", "{C5783E27-7308-41A1-BBD2-2CD84E4BAE6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToGoDelivery.Contracts", "ToGoDelivery.Contracts\ToGoDelivery.Contracts.csproj", "{0D5F2EC6-2932-4D50-A981-3C4CCEEA84EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToGoDelivery.Tests", "ToGoDelivery.Tests\ToGoDelivery.Tests.csproj", "{341D897D-BD3B-46AC-90CC-7DC5C3C6E7E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{7DDE55DE-4EF2-4CB6-8735-A676A6668069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DDE55DE-4EF2-4CB6-8735-A676A6668069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DDE55DE-4EF2-4CB6-8735-A676A6668069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9653DCE-C580-42C8-84B1-DCB220147DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9653DCE-C580-42C8-84B1-DCB220147DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9653DCE-C580-42C8-84B1-DCB220147DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9653DCE-C580-42C8-84B1-DCB220147DA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84F1837C-ABAD-4CEC-B08C-EF935EC0F921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F1837C-ABAD-4CEC-B08C-EF935EC0F921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F1837C-ABAD-4CEC-B08C-EF935EC0F921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F1837C-ABAD-4CEC-B08C-EF935EC0F921}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5783E27-7308-41A1-BBD2-2CD84E4BAE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5783E27-7308-41A1-BBD2-2CD84E4BAE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5783E27-7308-41A1-BBD2-2CD84E4BAE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5783E27-7308-41A1-BBD2-2CD84E4BAE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5F2EC6-2932-4D50-A981-3C4CCEEA84EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5F2EC6-2932-4D50-A981-3C4CCEEA84EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5F2EC6-2932-4D50-A981-3C4CCEEA84EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5F2EC6-2932-4D50-A981-3C4CCEEA84EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{341D897D-BD3B-46AC-90CC-7DC5C3C6E7E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{341D897D-BD3B-46AC-90CC-7DC5C3C6E7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{341D897D-BD3B-46AC-90CC-7DC5C3C6E7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{341D897D-BD3B-46AC-90CC-7DC5C3C6E7E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

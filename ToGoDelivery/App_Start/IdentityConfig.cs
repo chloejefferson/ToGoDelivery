@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using ToGoDelivery.Data;
 using ToGoDelivery.Models;
 
 namespace ToGoDelivery
@@ -53,11 +54,12 @@ namespace ToGoDelivery
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
+                //COME BACK AND CHANGE THIS FOR SECURITY LATER!!! Set all back to true
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

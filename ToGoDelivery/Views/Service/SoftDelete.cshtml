@@ -1,0 +1,100 @@
+﻿@model ToGoDelivery.Models.Service.ServiceDetail
+
+@{
+    ViewBag.Title = "SoftDelete";
+}
+
+<div class="jumbotron" style="background-color:#e3fefe">
+
+    <h2 style="font-weight:bolder">Soft Delete</h2>
+
+    <h3>Are you sure you want to make this service inactive?</h3>
+    <div>
+        <h4>Service Detail</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OrderId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateCreated)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FinalTotalCost)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FinalTotalCost)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsFavorite)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsFavorite)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsPrepared)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsPrepared)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsFinalized)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsFinalized)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateFinalized)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateFinalized)
+            </dd>
+
+        </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+    </div>

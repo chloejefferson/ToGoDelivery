@@ -1,0 +1,28 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="jumbotron" style="background-color:#e3fefe">
+    <h2 style="font-weight:bolder">Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <table class="table table-hover">
+                <tr>
+                    <td>Enter Role Name</td>
+                    <td>
+                        @Html.EditorFor(m => m.Name)
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Create Role" />
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
