@@ -3,7 +3,7 @@ namespace ToGoDelivery.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class initialmigration : DbMigration
     {
         public override void Up()
         {
@@ -14,7 +14,6 @@ namespace ToGoDelivery.Data.Migrations
                         OrderId = c.Int(nullable: false),
                         ProductId = c.Int(nullable: false),
                         ProductCount = c.Int(nullable: false),
-                        IsActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => new { t.OrderId, t.ProductId })
                 .ForeignKey("dbo.Order", t => t.OrderId, cascadeDelete: true)
@@ -34,7 +33,7 @@ namespace ToGoDelivery.Data.Migrations
                         IsFavorite = c.Boolean(nullable: false),
                         IsPrepared = c.Boolean(nullable: false),
                         IsFinalized = c.Boolean(nullable: false),
-                        DateFinalized = c.DateTime(nullable: false),
+                        DateFinalized = c.DateTime(),
                     })
                 .PrimaryKey(t => t.OrderId)
                 .ForeignKey("dbo.ApplicationUser", t => t.CustomerId, cascadeDelete: true)
@@ -102,19 +101,6 @@ namespace ToGoDelivery.Data.Migrations
                 .Index(t => t.IdentityRole_Id);
             
             CreateTable(
-                "dbo.Product",
-                c => new
-                    {
-                        ProductId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
-                        Inventory = c.Int(nullable: false),
-                        Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        IsActive = c.Boolean(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ProductId);
-            
-            CreateTable(
                 "dbo.OrderService",
                 c => new
                     {
@@ -135,8 +121,23 @@ namespace ToGoDelivery.Data.Migrations
                         ServiceId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
                         Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ServiceId);
+            
+            CreateTable(
+                "dbo.Product",
+                c => new
+                    {
+                        ProductId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Inventory = c.Int(nullable: false),
+                        Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ProductId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -152,10 +153,10 @@ namespace ToGoDelivery.Data.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
-            DropForeignKey("dbo.OrderService", "ServiceId", "dbo.Service");
-            DropForeignKey("dbo.OrderService", "OrderId", "dbo.Order");
             DropForeignKey("dbo.OrderProduct", "ProductId", "dbo.Product");
             DropForeignKey("dbo.OrderProduct", "OrderId", "dbo.Order");
+            DropForeignKey("dbo.OrderService", "ServiceId", "dbo.Service");
+            DropForeignKey("dbo.OrderService", "OrderId", "dbo.Order");
             DropForeignKey("dbo.Order", "CustomerId", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
@@ -170,9 +171,9 @@ namespace ToGoDelivery.Data.Migrations
             DropIndex("dbo.OrderProduct", new[] { "ProductId" });
             DropIndex("dbo.OrderProduct", new[] { "OrderId" });
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.Product");
             DropTable("dbo.Service");
             DropTable("dbo.OrderService");
-            DropTable("dbo.Product");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");

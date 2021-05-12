@@ -55,25 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202105042229017_InitialMigration.cs" />
-    <Compile Include="Migrations\202105042229017_InitialMigration.Designer.cs">
-      <DependentUpon>202105042229017_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105050036031_ServiceUpdate.cs" />
-    <Compile Include="Migrations\202105050036031_ServiceUpdate.Designer.cs">
-      <DependentUpon>202105050036031_ServiceUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105082324340_OrderProductRemoveIsActiveAndUpdateOrder.cs" />
-    <Compile Include="Migrations\202105082324340_OrderProductRemoveIsActiveAndUpdateOrder.Designer.cs">
-      <DependentUpon>202105082324340_OrderProductRemoveIsActiveAndUpdateOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105090314109_NullableOrderDateFinalized.cs" />
-    <Compile Include="Migrations\202105090314109_NullableOrderDateFinalized.Designer.cs">
-      <DependentUpon>202105090314109_NullableOrderDateFinalized.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105100318299_NotMapped.cs" />
-    <Compile Include="Migrations\202105100318299_NotMapped.Designer.cs">
-      <DependentUpon>202105100318299_NotMapped.cs</DependentUpon>
+    <Compile Include="Migrations\202105120316547_initialmigration.cs" />
+    <Compile Include="Migrations\202105120316547_initialmigration.Designer.cs">
+      <DependentUpon>202105120316547_initialmigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
@@ -88,20 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105042229017_InitialMigration.resx">
-      <DependentUpon>202105042229017_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105050036031_ServiceUpdate.resx">
-      <DependentUpon>202105050036031_ServiceUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105082324340_OrderProductRemoveIsActiveAndUpdateOrder.resx">
-      <DependentUpon>202105082324340_OrderProductRemoveIsActiveAndUpdateOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105090314109_NullableOrderDateFinalized.resx">
-      <DependentUpon>202105090314109_NullableOrderDateFinalized.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105100318299_NotMapped.resx">
-      <DependentUpon>202105100318299_NotMapped.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105120316547_initialmigration.resx">
+      <DependentUpon>202105120316547_initialmigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

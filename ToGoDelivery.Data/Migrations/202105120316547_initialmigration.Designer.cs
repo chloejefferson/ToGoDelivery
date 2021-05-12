@@ -7,13 +7,13 @@ namespace ToGoDelivery.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class NotMapped : IMigrationMetadata
+    public sealed partial class initialmigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NotMapped));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialmigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202105100318299_NotMapped"; }
+            get { return "202105120316547_initialmigration"; }
         }
         
         string IMigrationMetadata.Source
